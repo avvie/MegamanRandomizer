@@ -43,7 +43,7 @@ class PaletteGenerator(GeneratorBase):
         self.file.seek(0x1C2A0)
         self.file.write(int.to_bytes(self.rando_palette[1])) #replaces a lda #$11 with our new palette
 
-        for offset in self.rando_palette: #Writes our megaman palette to palette tables
+        for offset in self.Megaman_Default_Offsets: #Writes our megaman palette to palette tables
             self.file.seek(offset)
             self.file.write(int.to_bytes(self.rando_palette[0]))
             self.file.write(int.to_bytes(self.rando_palette[1]))
