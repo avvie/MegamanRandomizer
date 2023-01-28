@@ -1,4 +1,4 @@
-# Magaman Randomizer App
+# Megaman Randomizer App
 This repository contains the code for a very rudimentary Magaman randomizer app. The app was created by a small team of two developers.
 
 
