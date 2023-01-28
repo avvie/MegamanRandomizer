@@ -13,6 +13,17 @@ Randomizes what each boss drops at the end of the level
 the file header removed (this will be improved in at a later time)
 - Run the app using `python3 MMRando.py`
 
+### Rando current options
+
+| Command | Description |
+| --- | --- |
+| -h | Displays the help menu in the app |
+| -w | Disables randomization of weapons. Enabled by default |
+| -p | Disables randomization of megaman pallete. Enabled by default |
+| --- | --- |
+| -o | Sets the output file path | 
+| -i | Sets the input file path | 
+
 ## Requirements
 Python 3.11.*
 
