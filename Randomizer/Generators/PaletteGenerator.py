@@ -1,4 +1,4 @@
-from Generators.GeneratorBase import *
+from BaseClasses.GeneratorBase import *
 
 class PaletteGenerator(GeneratorBase):
     # P C I B F E G M Weapon Palettes for Mega Man
