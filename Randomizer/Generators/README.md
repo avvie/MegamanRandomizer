@@ -9,7 +9,7 @@ Define the static parameters of the generator and initialize the base class thro
 Pass any parameters/data that you want in the class in the params variable.
 
 ```python
-	 #Original weapon bytes
+#Original weapon bytes
     Vanilla_Weapons = [0x20, 0x10, 0x02, 0x40, 0x04, 0x08]
     Weapons_Write_Offset = 0x1C148
     Boss_Defeated_Weapon_Write_Offset = 0x1BFCC
