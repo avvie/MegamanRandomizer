@@ -12,8 +12,8 @@ Randomizes what each boss drops at the end of the level
 ## How to use
 - Clone the repository to your local machine
 - Navigate to the project directory/Randomizer
-- You should add your megaman nes image into the directory/Randomizer, with 
-the file header removed (this will be improved in at a later time)
+- You should add your megaman nes image into the directory/Randomizer. We support the (USA) or (U) release header.
+If it wont load, open an issue :)
 - Run the app using `python3 MMRando.py`
 
 ### Rando current options
