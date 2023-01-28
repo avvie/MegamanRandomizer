@@ -1,5 +1,7 @@
 # Magaman Randomizer App
 This repository contains the code for a very rudimentary Magaman randomizer app. The app was created by a small team of two developers.
+![image](https://user-images.githubusercontent.com/10329405/215262462-b48717b5-d942-4d3e-b2e8-aa3b47de9bb8.png)
+
 
 ## Features
 
