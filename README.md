@@ -20,6 +20,7 @@ If you would like to contribute, please fork the repository and submit a pull re
 
 ## Authors
 [JoJoCrusade](https://github.com/JoJoCrusade) - with whom this would not exit <3
+
 [avvie](https://github.com/avvie)
 ## License
 This project is licensed under the [CCC3](LICENSE.md).
