@@ -34,7 +34,7 @@ If you would like to contribute, please fork the repository and submit a pull re
 Here are some resources if you are interested in contributing. [Disassembly](https://bisqwit.iki.fi/jutut/megamansource/)
 
 ## Authors
-- [JoJoCrusade](https://github.com/JoJoCrusade) - with whom this would not exit <3
+- [JoJoCrusade](https://github.com/JoJoCrusade) - with whom this would not exist <3
 
 - [avvie](https://github.com/avvie)
 ## License
