@@ -5,6 +5,7 @@ from typing import final
 from Generators.PaletteGenerator import PaletteGenerator
 from Generators.WeaponGenerator import WeaponGenerator
 from Utilities import *
+import hashlib
 import shutil
 import sys
 import os.path
@@ -14,6 +15,7 @@ args = sys.argv[1:]
 
 input_file = "./Mega Man (USA).nes"
 output_file = "./MMRando.nes"
+supported_md5_input_checksums = ["4de82cfceadbf1a5e693b669b1221107"]
 
 # Gets the path to a valid file passed in arguments, positionally after param
 def GetValidFileFromParameter(paramList, param, default = None):
@@ -46,6 +48,15 @@ output_file = GetValidFileFromParameter(args, '-o', output_file)
 Megaman_Default = [0x2c, 0x11]
 
 try:
+    # Check for checksum
+    file = open(input_file, "r")
+    checksum = (hashlib.md5(file))
+    file.close()
+
+    if checksum not in supported_md5_input_checksums:
+        print("Input file md5 checksum not supported")
+        sys.exit(0)
+
     # Make a copy of the original input file 
     filecopy = shutil.copyfile(input_file, output_file)
 
