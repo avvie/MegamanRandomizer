@@ -1,4 +1,4 @@
-from Generators.GeneratorBase import *
+from BaseClasses.GeneratorBase import *
 
 class WeaponGenerator(GeneratorBase):
     #Original weapon bytes
