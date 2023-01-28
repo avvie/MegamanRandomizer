@@ -16,10 +16,12 @@ filecopy = shutil.copyfile("./Mega Man (USA).nes", "./MMRando.nes")
 
 file = open("MMRando.nes", "r+b")
 
-w = WeaponGenerator(file)
-w.Randomize()
-p = PaletteGenerator(file, Megaman_Default)
-p.Randomize()
+GeneratorList = []
+GeneratorList.append(WeaponGenerator(file))
+GeneratorList.append(PaletteGenerator(file, Megaman_Default))
+
+for generator in GeneratorList:
+    generator.Randomize()
 
 file.close()
 
