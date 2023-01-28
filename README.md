@@ -7,11 +7,11 @@ Randomizes the megaman pallete
 Randomizes what each boss drops at the end of the level
 
 ## How to use
--Clone the repository to your local machine
--Navigate to the project directory/Randomizer
--You should add your megaman nes image into the directory/Randomizer, with 
+- Clone the repository to your local machine
+- Navigate to the project directory/Randomizer
+- You should add your megaman nes image into the directory/Randomizer, with 
 the file header removed (this will be improved in at a later time)
--Run the app using `python3 MMRando.py`
+- Run the app using `python3 MMRando.py`
 
 ## Requirements
 Python 3.11.*
@@ -21,9 +21,9 @@ We welcome contributions to the project.
 If you would like to contribute, please fork the repository and submit a pull request.
 
 ## Authors
--[JoJoCrusade](https://github.com/JoJoCrusade) - with whom this would not exit <3
+- [JoJoCrusade](https://github.com/JoJoCrusade) - with whom this would not exit <3
 
--[avvie](https://github.com/avvie)
+- [avvie](https://github.com/avvie)
 ## License
 This project is licensed under the [CCC3](LICENSE.md).
 
