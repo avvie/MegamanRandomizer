@@ -11,3 +11,6 @@ Gutsman_ClearPatch = 0x1B69E # Fixes a cmp call for checking if we beat gutsman
 
 Megaman_Bossroom_PalPatch = [0x1C29B, 0x1C2A0] # Patches hard coded palette values
                                                 # First address is 2c, the second is 11
+
+#please name this more concretely
+Megaman_Default = [0x2c, 0x11]
