@@ -16,7 +16,6 @@ class WeaponGenerator(GeneratorBase):
         while (len(self.Vanilla_Weapons) > 0):
             length = len(self.Vanilla_Weapons)
             r = random.randrange(length)
-            print("rng",r)
             newByte = self.Vanilla_Weapons[r]
             New_Weapons.append(newByte)
             self.Vanilla_Weapons.pop(r)
@@ -24,7 +23,6 @@ class WeaponGenerator(GeneratorBase):
 
     def __Generate(self):
         self.shuffled_weapons = self.ShuffleWeapons()
-        print("Randomized Weapons: ",self.shuffled_weapons)
 
     def __Write(self):
         self.file.seek(self.Weapons_Write_Offset) #weapons offset
