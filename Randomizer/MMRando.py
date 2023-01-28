@@ -1,7 +1,5 @@
 from Generators.PaletteGenerator import PaletteGenerator
 from Generators.WeaponGenerator import WeaponGenerator
-import binascii
-import random
 import shutil
 
 filecopy = shutil.copyfile("./Mega Man (USA).nes", "./MMRando.nes")

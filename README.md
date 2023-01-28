@@ -20,6 +20,8 @@ Python 3.11.*
 We welcome contributions to the project. 
 If you would like to contribute, please fork the repository and submit a pull request.
 
+Here are some resources if you are interested in contributing. [Disassembly](https://bisqwit.iki.fi/jutut/megamansource/)
+
 ## Authors
 - [JoJoCrusade](https://github.com/JoJoCrusade) - with whom this would not exit <3
 

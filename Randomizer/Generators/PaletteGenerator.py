@@ -14,13 +14,10 @@ class PaletteGenerator(GeneratorBase):
         super().__init__(file, params)
 
     def __palletteGenerator(self, color1, color2):
-        print("palette", color1, color2)
         palette_offset = color1 - color2
-        print("offset", palette_offset)
 
         r_high = random.randint(1, 2)
         r_low = random.randrange(13)
-        print(r_high, r_low)
         new_paletteh = (r_high * 16) + r_low
         new_palettel = new_paletteh - palette_offset
     
@@ -54,7 +51,6 @@ class PaletteGenerator(GeneratorBase):
             Generated_Palettes = self.__palletteGenerator(self.primaryPal_Megaman[x],self.primaryPal_Megaman[(x+1)])
             self.file.write(int.to_bytes(Generated_Palettes[0]))
             self.file.write(int.to_bytes(Generated_Palettes[1]))
-            print("Writing Palettes ",Generated_Palettes)
             x += 2
 
     def Randomize(self):
