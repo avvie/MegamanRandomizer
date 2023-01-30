@@ -25,6 +25,6 @@ class QualityOfLifePatches(PatchBase):
         self.file.seek(self.Free_Space_Offset)
         
         for x in self.Ammo_Refills_On_Death:
-            self.file.write(into.to_bytes(x))
+            self.file.write(int.to_bytes(x))
             
             #TO DO: also add bomb improvement patch
