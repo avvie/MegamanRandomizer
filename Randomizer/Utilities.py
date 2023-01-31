@@ -29,7 +29,9 @@ def PrintHelp():
            "-o [filePath]:\t Set a specific output file path. Default: ./MMRando.nes\n" +
            "\nRandomizer Options:\n" +
            "-w:\t Do NOT randomize weapon drops. Default: Weapons WILL get randomized\n" +
-           "-p:\t Do NOT randomize pallete drops. Default: Palletes WILL get randomized\n")
+           "-p:\t Do NOT randomize pallete drops. Default: Palletes WILL get randomized\n" +
+           "-qol:\t Do NOT apply Quality of Life patch. Default: Patch WILL be applied\n" +
+           "Quality of life buffs bomb weapon and refills ammo upon death")
 
 supported_md5_input_checksums = ["4de82cfceadbf1a5e693b669b1221107", "4d4ffdfe7979b5f06dec2cf3563440ad"]
 
