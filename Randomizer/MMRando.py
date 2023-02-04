@@ -1,6 +1,7 @@
 from pickle import TRUE
 from Generators.PaletteGenerator import PaletteGenerator
 from Generators.WeaponGenerator import WeaponGenerator
+from Patches.QualityOfLifePatches import QualityOfLifePatches
 from Utilities import *
 import hashlib
 import shutil
@@ -53,6 +54,13 @@ try:
     for generator in GeneratorList:
         generator.Randomize()
     
+    PatchList = []
+    if not ParamExistsInArgs(args, '-qol'):
+        PatchList.append(QualityOfLifePatches(file))
+    
+    for patch in PatchList:
+        patch.Patch()
+        
 except Exception as e:
     print(e.with_traceback())
 finally:
