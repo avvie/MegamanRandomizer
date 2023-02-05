@@ -7,39 +7,42 @@ class IPSPatcher(PatchBase):
         
     def Patch(self):
         super().Patch()
+        self.__GetFile()
         self.__Write()
         
-    def __Write(self, IPSFile):
+    def __GetFile()
+    
+    def __Write(self):
     Offset = 0
     Size = 0
     RLE_Size = 0
     Value = 0
     End_of_file_Checker = bytes(b'/x00')
     x = 0
-    IPSFile.seek(5) #Skip past header
+    this.IPSFile.seek(5) #Skip past header
     while End_of_file_Checker != bytes(b'EOF'):
         # print("Patch offset: " ,PatchOffset)
-        # IPSFile.seek(PatchOffset)
-        Record = bytes(IPSFile.read(3))
+        # this.IPSFile.seek(PatchOffset)
+        Record = bytes(this.IPSFile.read(3))
         End_of_file_Checker = Record
         Offset = int.from_bytes(Record, 'big')
         # print("Read ROM offset " , Offset, "at patch offset ", PatchOffset)
         # PatchOffset = PatchOffset+3 #we read 3 bytes and move the offset accordingly
     
-        Size = int.from_bytes(IPSFile.read(2))
+        Size = int.from_bytes(this.IPSFile.read(2))
         # PatchOffset = (PatchOffset+2)
 
         if Size != 0:           
-            PatchBytes = IPSFile.read(Size)
-            RomFile.seek(Offset)
-            RomFile.write(PatchBytes)
+            PatchBytes = this.IPSFile.read(Size)
+            self.file.seek(Offset)
+            self.file.write(PatchBytes)
         else: 
             # print("RLE patch")
-            RLE_Size = int.from_bytes(IPSFile.read(2))
-            Value = IPSFile.read(1)
+            RLE_Size = int.from_bytes(this.IPSFile.read(2))
+            Value = this.IPSFile.read(1)
             # PatchOffset = PatchOffset + 3
             # print("RLE Size ", RLE_Size, "Byte to write ", Value, "at offset ", PatchOffset)
-            RomFile.seek(Offset)
+            self.file.seek(Offset)
             while RLE_Size > 0:
-                RomFile.write(Value)
+                self.file.write(Value)
                 RLE_Size = RLE_Size - 1
