@@ -29,7 +29,8 @@ def PrintHelp():
            "-o [filePath]:\t Set a specific output file path. Default: ./MMRando.nes\n" +
            "\nRandomizer Options:\n" +
            "-w:\t Do NOT randomize weapon drops. Default: Weapons WILL get randomized\n" +
-           "-p:\t Do NOT randomize pallete drops. Default: Palletes WILL get randomized\n")
+           "-p:\t Do NOT randomize pallete drops. Default: Palletes WILL get randomized\n" +
+           "-roll:\t Applies Roll-Chan graphics patch (Credit:\t ZYNK). Defualt: Off\n")
 
 supported_md5_input_checksums = ["4de82cfceadbf1a5e693b669b1221107", "4d4ffdfe7979b5f06dec2cf3563440ad"]
 
