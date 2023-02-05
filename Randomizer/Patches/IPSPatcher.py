@@ -22,7 +22,7 @@ class IPSPatcher(PatchBase):
         while End_of_file_Checker != bytes(b'EOF'):
             Record = bytes(self.IPSFile.read(3))
             End_of_file_Checker = Record
-            Offset = int.from_bytes(Record, 'big')
+            Offset = (int.from_bytes(Record, 'big')) - 0x10 #Subtracting the header size
             # print("Read ROM offset " , Offset, "at patch offset ", PatchOffset)
             # PatchOffset = PatchOffset+3 #we read 3 bytes and move the offset accordingly
         
