@@ -6,30 +6,28 @@ class IPSPatcher(PatchBase):
     def __init__(self, file, params = None):
         super().__init__(file, params)        
         
-    def __GetFile()
-    IPS_Folder = Path("./IPSFiles/")
-    PatchFile = IPS_Folder / params
-    IPSFile = open(PatchFile)
+    def __GetFile(self):
+        self.IPS_Folder = Path("IPSFiles/")
+        self.PatchFile = self.IPS_Folder / self.params
+        self.IPSFile = open(self.PatchFile, "r+b")
     
     def __Write(self):
-    Offset = 0
-    Size = 0
-    RLE_Size = 0
-    Value = 0
-    End_of_file_Checker = bytes(b'/x00')
-    x = 0
-    self.IPSFile.seek(5) #Skip past header
-    while End_of_file_Checker != bytes(b'EOF'):
-        # print("Patch offset: " ,PatchOffset)
-        # self.IPSFile.seek(PatchOffset)
-        Record = bytes(self.IPSFile.read(3))
-        End_of_file_Checker = Record
-        Offset = int.from_bytes(Record, 'big')
-        # print("Read ROM offset " , Offset, "at patch offset ", PatchOffset)
-        # PatchOffset = PatchOffset+3 #we read 3 bytes and move the offset accordingly
-    
-        Size = int.from_bytes(self.IPSFile.read(2))
-        # PatchOffset = (PatchOffset+2)
+        Offset = 0
+        Size = 0
+        RLE_Size = 0
+        Value = 0
+        End_of_file_Checker = bytes(b'/x00')
+        x = 0
+        self.IPSFile.seek(5) #Skip past header
+        while End_of_file_Checker != bytes(b'EOF'):
+            Record = bytes(self.IPSFile.read(3))
+            End_of_file_Checker = Record
+            Offset = int.from_bytes(Record, 'big')
+            # print("Read ROM offset " , Offset, "at patch offset ", PatchOffset)
+            # PatchOffset = PatchOffset+3 #we read 3 bytes and move the offset accordingly
+        
+            Size = int.from_bytes(self.IPSFile.read(2))
+            # PatchOffset = (PatchOffset+2)
 
         if Size != 0:           
             PatchBytes = self.IPSFile.read(Size)
@@ -45,7 +43,7 @@ class IPSPatcher(PatchBase):
             while RLE_Size > 0:
                 self.file.write(Value)
                 RLE_Size = RLE_Size - 1
-    self.IPSFile.close()
+        self.IPSFile.close()
 
     def Patch(self):
         super().Patch()
