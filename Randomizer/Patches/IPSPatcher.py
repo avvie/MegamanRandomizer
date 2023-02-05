@@ -29,20 +29,20 @@ class IPSPatcher(PatchBase):
             Size = int.from_bytes(self.IPSFile.read(2))
             # PatchOffset = (PatchOffset+2)
 
-        if Size != 0:           
-            PatchBytes = self.IPSFile.read(Size)
-            self.file.seek(Offset)
-            self.file.write(PatchBytes)
-        else: 
-            # print("RLE patch")
-            RLE_Size = int.from_bytes(self.IPSFile.read(2))
-            Value = self.IPSFile.read(1)
-            # PatchOffset = PatchOffset + 3
-            # print("RLE Size ", RLE_Size, "Byte to write ", Value, "at offset ", PatchOffset)
-            self.file.seek(Offset)
-            while RLE_Size > 0:
-                self.file.write(Value)
-                RLE_Size = RLE_Size - 1
+            if Size != 0:           
+                PatchBytes = self.IPSFile.read(Size)
+                self.file.seek(Offset)
+                self.file.write(PatchBytes)
+            else: 
+                # print("RLE patch")
+                RLE_Size = int.from_bytes(self.IPSFile.read(2))
+                Value = self.IPSFile.read(1)
+                # PatchOffset = PatchOffset + 3
+                # print("RLE Size ", RLE_Size, "Byte to write ", Value, "at offset ", PatchOffset)
+                self.file.seek(Offset)
+                while RLE_Size > 0:
+                    self.file.write(Value)
+                    RLE_Size = RLE_Size - 1
         self.IPSFile.close()
 
     def Patch(self):
