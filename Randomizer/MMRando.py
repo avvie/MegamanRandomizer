@@ -53,6 +53,14 @@ try:
     
     for generator in GeneratorList:
         generator.Randomize()
+        
+    PatchList = []
+    
+    if ParamExistsInArgs(args, '-roll'):
+        PatchList.append(IPSPatcher(file, "ROLLCHAN.ips"))
+        
+    for patch in PatchList:
+        patch.Patch()
     
 except Exception as e:
     print(e.with_traceback())
