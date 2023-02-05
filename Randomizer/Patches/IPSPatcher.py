@@ -18,7 +18,7 @@ class IPSPatcher(PatchBase):
         Value = 0
         End_of_file_Checker = bytes(b'/x00')
         x = 0
-        self.IPSFile.seek(5) #Skip past header
+        print(self.IPSFile.read(5))
         while End_of_file_Checker != bytes(b'EOF'):
             Record = bytes(self.IPSFile.read(3))
             End_of_file_Checker = Record
