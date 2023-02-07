@@ -23,7 +23,7 @@ If it wont load, open an issue :)
 | -h | Displays the help menu in the app |
 | -w | Disables randomization of weapons. Enabled by default |
 | -p | Disables randomization of megaman pallete. Enabled by default |
-| -roll | Applies Roll-Chan graphics patch (Credit Zynk). Disabled by default |
+| +roll | Applies Roll-Chan graphics patch (Credit Zynk). Disabled by default |
 | --- | --- |
 | -o | Sets the output file path | 
 | -i | Sets the input file path | 

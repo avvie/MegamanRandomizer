@@ -56,7 +56,7 @@ try:
         
     PatchList = []
     
-    if ParamExistsInArgs(args, '-roll'):
+    if ParamExistsInArgs(args, '+roll'):
         PatchList.append(IPSPatcher(file, "ROLLCHAN.ips"))
         
     for patch in PatchList:
