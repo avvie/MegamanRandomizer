@@ -12,16 +12,12 @@ class IPSPatcher(PatchBase):
         self.IPSFile = open(self.PatchFile, "r+b")
     
     def __Write(self):
-        offset = 0
-        size = 0
-        rle_size = 0
-        value = 0
-        end_of_file_checker = bytes(b'/x00')
-        x = 0
-        while end_of_file_checker != bytes(b'EOF'):
-            Record = bytes(self.IPSFile.read(3))
-            end_of_file_checker = Record
-            offset = (int.from_bytes(Record, 'big')) - 0x10 #Subtracting the header size
+        record = bytes()
+        self.IPSFile.seek(5) #skip past PATCH string header in the ips file
+        while record != bytes(b'EOF'): #Checks for the EOF (end of file) string that ends an ips file
+            record = bytes(self.IPSFile.read(3))
+            end_of_file_checker = record
+            offset = (int.from_bytes(record, 'big')) - 0x10 #Subtracting the header size
             size = int.from_bytes(self.IPSFile.read(2))
 
 
