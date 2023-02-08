@@ -24,6 +24,7 @@ If it wont load, open an issue :)
 | -w | Disables randomization of weapons. Enabled by default |
 | -p | Disables randomization of megaman pallete. Enabled by default |
 | Game Patches | --- |
+| +roll | Applies Roll-Chan graphics patch (Credit Zynk). Disabled by default |
 | -qol | Disables all quality of life changes. |
 | -a | Disables ammo refil upon death |
 | -b | Disables buff on bomb timer |

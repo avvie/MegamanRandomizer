@@ -1,6 +1,7 @@
 from pickle import TRUE
 from Generators.PaletteGenerator import PaletteGenerator
 from Generators.WeaponGenerator import WeaponGenerator
+from Patches.IPSPatcher import IPSPatcher
 from Patches.QualityOfLifePatches import QualityOfLifePatches
 from Patches.AmmoRefilOnDeath import AmmoRefilOnDeath
 from Patches.BombBuff import BombBuff
@@ -57,8 +58,11 @@ try:
     
     for generator in GeneratorList:
         generator.Randomize()
-    
+        
     PatchList = []
+    if ParamExistsInArgs(args, '+roll'):
+        PatchList.append(IPSPatcher(file, "ROLLCHAN.ips"))
+        
     if not ParamExistsInArgs(args, '-qol') and len(ListIntersection(args, qolPatches)) == 0:
         PatchList.append(QualityOfLifePatches(file))
     
