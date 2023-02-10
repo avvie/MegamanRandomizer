@@ -1,6 +1,7 @@
 from pickle import TRUE
 from Generators.PaletteGenerator import PaletteGenerator
 from Generators.WeaponGenerator import WeaponGenerator
+from Generators.MusicGenerator import MusicGenerator
 from Patches.IPSPatcher import IPSPatcher
 from Patches.QualityOfLifePatches import QualityOfLifePatches
 from Patches.AmmoRefilOnDeath import AmmoRefilOnDeath
@@ -55,6 +56,8 @@ try:
         GeneratorList.append(WeaponGenerator(file))
     if not ParamExistsInArgs(args, '-p'):
         GeneratorList.append(PaletteGenerator(file, Megaman_Default))
+    if not ParamExistsInArgs(args, '-music'):
+        GeneratorList.append(MusicGenerator(file))
     
     for generator in GeneratorList:
         generator.Randomize()
