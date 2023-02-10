@@ -56,7 +56,7 @@ try:
         GeneratorList.append(WeaponGenerator(file))
     if not ParamExistsInArgs(args, '-p'):
         GeneratorList.append(PaletteGenerator(file, Megaman_Default))
-    if not ParamExistsInArgs(args, '-music'):
+    if ParamExistsInArgs(args, '+music'):
         GeneratorList.append(MusicGenerator(file))
     
     for generator in GeneratorList:

@@ -14,7 +14,6 @@ class MusicGenerator(GeneratorBase):
         self.file.seek(0x15394)
         for song in self.stage_music_table:
             self.file.write(int.to_bytes(song))
-        print("song list ", self.stage_music_table)
         
     def Randomize(self):
         super().Randomize()
