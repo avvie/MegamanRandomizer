@@ -1,0 +1,1 @@
+ROLLCHAN.ips file is attribute to the artist Zynk Oxhyde here https://www.romhacking.net/community/2041/
