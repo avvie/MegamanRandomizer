@@ -30,6 +30,7 @@ def PrintHelp():
            "\nRandomizer Options:\n" +
            "-w:\tDo NOT randomize weapon drops. Default: Weapons WILL get randomized\n" +
            "-p:\tDo NOT randomize pallete drops. Default: Palletes WILL get randomized\n" +
+           "+music:\tShuffle stage music. Default: Music WILL NOT get randomized\n" +
            "\nGame Patches\n"+
            "+roll:\t Applies Roll-Chan graphics patch (Credit:\t ZYNK). Defualt: Off\n" +
            "-qol:\tDo NOT apply Quality of Life patch. Default: Patch WILL be applied\n" +

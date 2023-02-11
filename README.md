@@ -23,6 +23,7 @@ If it wont load, open an issue :)
 | -h | Displays the help menu in the app |
 | -w | Disables randomization of weapons. Enabled by default |
 | -p | Disables randomization of megaman pallete. Enabled by default |
+| +music | Shuffles stage music. Disabled by default |
 | Game Patches | --- |
 | +roll | Applies Roll-Chan graphics patch (Credit Zynk). Disabled by default |
 | -qol | Disables all quality of life changes. |
