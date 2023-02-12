@@ -3,7 +3,7 @@ from BaseClasses.PatchBase import *
 
 class IPSPatcher(PatchBase):
     
-    def __init__(self, file, params = None):
+    def __init__(self, file, params=None):
         super().__init__(file, params)        
         
     def __GetFile(self):
@@ -31,7 +31,7 @@ class IPSPatcher(PatchBase):
                 while rle_size > 0:
                     self.file.write(value)
                     rle_size = rle_size - 1
-                    
+
         self.ips_file.close()
 
     def Patch(self):
