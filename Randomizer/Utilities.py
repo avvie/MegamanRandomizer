@@ -1,6 +1,6 @@
 import os.path
 
-def AddHeader(header, __output_file):
+def __add_header__(header, __output_file):
     with open(__output_file,'r+b') as contents:
         save = contents.read()
     with open(__output_file,'w+b') as contents:

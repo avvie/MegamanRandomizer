@@ -2,7 +2,8 @@ import hashlib
 import os
 import sys
 
-from RandomizerLogic import RandomizerLogic
+from Randomizer import Randomizer
+from RandomizerFlagLogic import RandomizerFlagLogic
 from Utilities import ParamExistsInArgs, PrintHelp, GetValidFileFromParameter, max_image_file_size, \
     supported_md5_input_checksums
 
@@ -39,7 +40,7 @@ class ConsoleInterface:
             sys.exit(1)
 
         try:
-            with RandomizerLogic() as rando:
+            with Randomizer(RandomizerFlagLogic) as rando:
                 rando.Run(args, input_file, output_file)
         except Exception as e:
             print(e.with_traceback())
