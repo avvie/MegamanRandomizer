@@ -38,4 +38,3 @@ class IPSPatcher(PatchBase):
         super().Patch()
         self.__GetFile()
         self.__Write()
-###Credit https://zerosoft.zophar.net/ips.php ZeroSoft for ips file format specification
