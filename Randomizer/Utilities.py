@@ -10,7 +10,7 @@ def AddHeader(header, __output_file):
 
 
 # Gets the path to a valid file passed in arguments, positionally after param
-def GetValidFileFromParameter(paramList, param, default = None, check_existence = True):
+def GetValidFileFromParameter(paramList: object, param: object, default: object = None, check_existence: object = True) -> object:
     if param in paramList:
         i = paramList.index(param)
         if i+1 < len(paramList):
