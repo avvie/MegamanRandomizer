@@ -10,8 +10,11 @@ from Utilities import ParamExistsInArgs, PrintHelp, GetValidFileFromParameter, m
 
 class ConsoleInterface:
 
-    def __init__(self, argv_):
+    def __init__(self, argv_, flag_logic=None):
         self.argv_ = argv_
+        self.flag_logic = flag_logic
+        if self.flag_logic is None:
+            self.flag_logic = RandomizerFlagLogic
 
     def __enter__(self):
         return self
@@ -40,7 +43,7 @@ class ConsoleInterface:
             sys.exit(1)
 
         try:
-            with Randomizer(RandomizerFlagLogic) as rando:
+            with Randomizer(self.flag_logic) as rando:
                 rando.Run(args, input_file, output_file)
         except Exception as e:
             print(e.with_traceback())
