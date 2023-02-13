@@ -45,7 +45,11 @@ Python 3.11.*
 We welcome contributions to the project. 
 If you would like to contribute, please fork the repository and submit a pull request.
 
+## Attributions
+We are using Zynk Oxhyde's art in our test ips file. You can see their romhacking.net profile [here](https://www.romhacking.net/community/2041/)
+
 Here are some resources if you are interested in contributing. [Disassembly](https://bisqwit.iki.fi/jutut/megamansource/)
+ZeroSoft for ips file [format specification}(https://zerosoft.zophar.net/ips.php)
 
 ## Authors
 - [JoJoCrusade](https://github.com/JoJoCrusade) - with whom this would not exist <3
