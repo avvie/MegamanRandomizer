@@ -44,7 +44,7 @@ class Randomizer:
         self.__apply_ips_patches__(ips_patches_list)
         self.__apply_patches__(patch_list)
         self.__apply_generators__(generator_list)
-
+        self.file.close()
         # Assume headerless and add header
         __add_header__(headers[0], output_file)
 
