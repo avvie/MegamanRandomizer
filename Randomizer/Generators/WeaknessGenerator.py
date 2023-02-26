@@ -30,21 +30,21 @@ class WeaknessGenerator(GeneratorBase):
             else:
                 currentchart[0] = 3 #Gives a buster weakness if were out of boss weapons
             self.WeaknessList.append(currentchart)
+        self.__Organize()
 
     #Here we shuffle the list order - this shuffles it from the last boss to any random one
     #Next we find where the Gutsman weakness is (it's the 7th byte in a chart)
     #Then we swap the index with the Gutsman weakness with a randomly chosen boss that has throwable blocks
     def __Organize(self):
-        random.shuffle(self.WeaknessList) #Shuffles the indexes without shuffling the list at each index
+        random.shuffle(self.WeaknessList) #Shuffles the lists without shuffling the lists' contents
 
         original_index = 0
         for weaknesses in self.WeaknessList:
             # Checks if the major weakness in assigned to Gutsman
             if weaknesses[6] > 3: #Has a major weakness to Gutsman
                 new_index = random.choice([0, 4, 5]) #These are the boss rooms that have throwable blocks
-                print("original_index ", original_index)
-                print("rng ", new_index)
-                # we want to swap the list with Gutsman weakness (original_index)
+
+                # we want to swap the original list with Gutsman weakness (original_index)
                 # with the randomly chosen index of 0, 4, or 5 (Cut, Elec, or Guts)
                 oldgutsman_weakness_value = self.WeaknessList[original_index]
                 newgutsman_weakness_value = self.WeaknessList[new_index]
