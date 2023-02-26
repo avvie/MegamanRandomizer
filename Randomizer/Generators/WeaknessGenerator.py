@@ -21,10 +21,8 @@ class WeaknessGenerator(GeneratorBase):
             r = random.randrange(length)  # From the list of remaining values
             majorweakness = self.WeaknessByteOffset[r]  # Get the offset well set to 4
 
-            print("major weakness", majorweakness)
             currentchart[majorweakness] = 4
             self.WeaknessByteOffset.pop(r)  # Remove that as a major weakness so each robot is unique
-            print("popped ", self.WeaknessByteOffset)
 
             if len(self.WeaknessByteOffset) > 0:
                 r = random.randrange(len(self.WeaknessByteOffset))
@@ -69,8 +67,11 @@ class WeaknessGenerator(GeneratorBase):
 
     def __Write(self):
         self.file.seek(self.DamageTable)
-        for weakness in self.WeaknessList:
-            self.file.write(weakness)
+        for list in self.WeaknessList:
+            for bytes in list:
+                self.file.write(int.to_bytes(bytes))
+
+
 
 
 
