@@ -2,7 +2,6 @@ from BaseClasses.GeneratorBase import *
 
 class WeaknessGenerator(GeneratorBase):
     WeaknessByteOffset = [1, 2, 3, 4, 5, 6]
-    RobotOffset = [0, 8, 16, 24, 32, 40]
     DamageTable = 0x1FDEE
     # P C I B F E G M
     WeaknessChart = [1, 0, 0, 0, 0, 0, 0, 0]  # preset default values
