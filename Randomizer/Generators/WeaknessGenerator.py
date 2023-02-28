@@ -65,6 +65,7 @@ class WeaknessGenerator(GeneratorBase):
                 original_index = original_index + 1
 
     def __Write(self):
+        print("Weakness table", self.WeaknessList)
         self.file.seek(self.DamageTable)
         for list in self.WeaknessList:
             for bytes in list:
