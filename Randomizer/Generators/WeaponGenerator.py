@@ -8,7 +8,7 @@ class WeaponGenerator(GeneratorBase):
     Boss_Defeated_Table_Offset = 0x1BFCC
     Gutsman_Specific_Fix_Offset = 0x1B69E
     Weakness_Table_Offset = 0x1FDEE
-    Weakness_Table = []
+    DamageLists = []
     Rewards_Table = []
     #This may be dumb to use
     #converts which index is the major weakness at the corrosponding reward value
@@ -16,20 +16,20 @@ class WeaponGenerator(GeneratorBase):
     def __init__(self, file, params = None):
         super().__init__(file, params)
     def __CreateWeaknessChart(self):
-        #Get the 6 x 8 byte chart for the weakness table
+        #Get the 6 x 8 byte chart for the damage table
         self.file.seek(self.Weakness_Table_Offset)
-        for list in range(6):
-            weakness = []
-            for bytes in range(8):
-                byte = int.from_bytes(self.file.read(1))
-                weakness.append(byte)
-            self.Weakness_Table.append(weakness)
-        print(self.Weakness_Table)
-    def __Organize(self):
+        for damagelists in range(6):
+            damagelist = []
+            for damagevalues in range(8):
+                damage = int.from_bytes(self.file.read(1))
+                damagelist.append(damage)
+            self.DamageLists.append(damagelist)
+        print(self.DamageLists)
+    def __Logic(self):
         #For each list in Weakness Chart
         #Find the index of the major weakness
-        for weaknesslist in self.Weakness_Table:
-            rewardlist = self.Weapon_Rewards[:]
+        for weaknesslist in self.DamageLists:
+            rewardlist = self.Weapon_Rewards[:] #This makes it easier to temporarly remove a reward
             sortedlist = weaknesslist[:]
             sortedlist.sort() #sets major weakness to the last index
             #now that we know the major weakness index, we can temporerly remove it from the rewards
@@ -42,7 +42,8 @@ class WeaponGenerator(GeneratorBase):
             #Convert from weakness index to weapon reward
             major_weakness_weapon = self.Weakness_Reward_Dict[weakness_index]
             print("Major weakness", major_weakness_weapon)
-            #Temporily remove the major weakness
+
+            #Remove the major weakness weapon from the temporary list
             #As another option may have removed it we can use try and skip it if it's already removed
             try:
                 rewardlist.pop(rewardlist.index(major_weakness_weapon))
@@ -66,9 +67,23 @@ class WeaponGenerator(GeneratorBase):
 
     def __Generate(self):
         self.__CreateWeaknessChart()
-        self.__Organize()
+        self.__Logic()
+
+    def __Write(self):
+        self.file.seek(self.Rewards_Table_Offset)
+        for reward in self.Rewards_Table:
+            self.file.write(int.to_bytes(reward))
+
+        self.file.seek(self.Boss_Defeated_Table_Offset)
+        for reward in self.Rewards_Table:
+            self.file.write(int.to_bytes(reward))
+
+        self.file.seek(self.Gutsman_Specific_Fix_Offset)  # Gutsman drawn sprite works differently on the level select
+        self.file.write(int.to_bytes(self.Rewards_Table[5]))
+
+
 
     def Randomize(self):
         super().Randomize()
         self.__Generate()
-        #self.__Write()
+        self.__Write()
