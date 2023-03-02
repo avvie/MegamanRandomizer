@@ -1,72 +1,64 @@
 from BaseClasses.GeneratorBase import *
 
 class WeaponGenerator(GeneratorBase):
-    #Original weapon bytes
+    #Original weapon reward bytes
     #Cut, Ice, Bomb, Fire, Elec, Guts
     Weapon_Rewards = [0x20, 0x10, 0x02, 0x40, 0x04, 0x08]
     Rewards_Table_Offset = 0x1C148
     Boss_Defeated_Table_Offset = 0x1BFCC
     Gutsman_Specific_Fix_Offset = 0x1B69E
-    Weakness_Table_Offset = 0x1FDEE
+    Damage_Table_Offset = 0x1FDEE
     DamageLists = []
     Rewards_Table = []
     #This may be dumb to use
-    #converts which index is the major weakness at the corrosponding reward value
-    Weakness_Reward_Dict = {1: 0x20, 2: 0x10, 3: 0x02, 4: 0x40, 5: 0x04, 6: 0x08}
+    #Converts index of most damaging weapon to the corrosponding weapon reward
+    DamageIndex_to_Reward_Dict = {1: 0x20, 2: 0x10, 3: 0x02, 4: 0x40, 5: 0x04, 6: 0x08}
     def __init__(self, file, params = None):
         super().__init__(file, params)
-    def __CreateWeaknessChart(self):
-        #Get the 6 x 8 byte chart for the damage table
-        self.file.seek(self.Weakness_Table_Offset)
-        for damagelists in range(6):
-            damagelist = []
-            for damagevalues in range(8):
-                damage = int.from_bytes(self.file.read(1))
-                damagelist.append(damage)
-            self.DamageLists.append(damagelist)
-        print(self.DamageLists)
+
     def __Logic(self):
-        #For each list in Weakness Chart
-        #Find the index of the major weakness
-        for weaknesslist in self.DamageLists:
-            rewardlist = self.Weapon_Rewards[:] #This makes it easier to temporarly remove a reward
-            sortedlist = weaknesslist[:]
-            sortedlist.sort() #sets major weakness to the last index
-            #now that we know the major weakness index, we can temporerly remove it from the rewards
-            #and assign a random one
-            #sense we're modifying lists we need to go by value instead of index
+        #For each boss damage list in the Damage Chart
+        #Find the index of the weapon that does the most damage to that boss and exclude it as an option
+        #Then give a random reward from valid options
+        for damagelist in self.DamageLists:
+            rewardlist = self.Weapon_Rewards[:] #A copy makes it easier to temporarly remove a reward
 
-            #Find the weakness index in the original list using the sorted one
-            #The major weakness will be index 7 in the sorted list
-            weakness_index = weaknesslist.index(sortedlist[7])
-            #Convert from weakness index to weapon reward
-            major_weakness_weapon = self.Weakness_Reward_Dict[weakness_index]
-            print("Major weakness", major_weakness_weapon)
+            sorted_damagelist = damagelist[:]
+            sorted_damagelist.sort() #sets highest damage value to the last (7th) index
 
-            #Remove the major weakness weapon from the temporary list
-            #As another option may have removed it we can use try and skip it if it's already removed
+            # Weakness is just a nick name for the weapon that does the most damage
+            #Find the highest value's index from the original damage list
+
+
+            excluded_index = damagelist.index(sorted_damagelist[7])
+            #Convert from damage index to weapon reward
+            excluded_award = self.DamageIndex_to_Reward_Dict[excluded_index]
+            print("Major weakness", excluded_award)
+
+            #Remove the excluded reward as an option from the temporary list
+            #The reward may have already been assigned to another boss - use try to see
             try:
-                rewardlist.pop(rewardlist.index(major_weakness_weapon))
+                rewardlist.pop(rewardlist.index(excluded_award))
             except ValueError:
                 pass #already removed
 
+            #Assign a random reward from remaining options
             try:
                 reward = random.choice(rewardlist)
-            except IndexError: #Last weapon available was the major weakness, which was removed
-                #Lets just swap the last two weaknesses?
+            except IndexError: #Last reward available has been excluded
+                #Lets just swap the excluded reward with the previous one
                 prev_reward = self.Rewards_Table[4]
-                new_reward = major_weakness_weapon
-                self.Rewards_Table[4] = new_reward
+                self.Rewards_Table[4] = excluded_award
                 self.Rewards_Table.append(prev_reward)
             else:
-            #Remove reward from options
+            #Remove chosen reward from future options
                 self.Weapon_Rewards.pop(self.Weapon_Rewards.index(reward))
                 self.Rewards_Table.append(reward)
             print("rewards table ", self.Rewards_Table)
 
 
     def __Generate(self):
-        self.__CreateWeaknessChart()
+        self.__ReadDamageChart()
         self.__Logic()
 
     def __Write(self):
@@ -82,6 +74,16 @@ class WeaponGenerator(GeneratorBase):
         self.file.write(int.to_bytes(self.Rewards_Table[5]))
 
 
+    def __ReadDamageChart(self):
+        #Get the 6 x 8 damage chart
+        self.file.seek(self.Damage_Table_Offset)
+        for damagelists in range(6):
+            damagelist = []
+            for damagevalues in range(8):
+                damage = int.from_bytes(self.file.read(1))
+                damagelist.append(damage)
+            self.DamageLists.append(damagelist)
+        print(self.DamageLists)
 
     def Randomize(self):
         super().Randomize()
