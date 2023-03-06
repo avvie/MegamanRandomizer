@@ -35,7 +35,6 @@ class WeaponGenerator(GeneratorBase):
             excluded_index = damagelist.index(sorted_damagelist[7])
             # Convert from damage index to weapon reward
             excluded_award = self.DamageIndex_to_Reward_Dict[excluded_index]
-            print("Major weakness", excluded_award)
 
             # Remove the excluded reward as an option from the temporary list
             # The reward may have already been assigned to another boss - use try to see
@@ -56,7 +55,6 @@ class WeaponGenerator(GeneratorBase):
                 # Remove chosen reward from future options
                 self.Weapon_Rewards.pop(self.Weapon_Rewards.index(reward))
                 self.Rewards_Table.append(reward)
-            print("rewards table ", self.Rewards_Table)
 
     def __Generate(self):
         self.__ReadDamageChart()
@@ -83,7 +81,6 @@ class WeaponGenerator(GeneratorBase):
                 damage = int.from_bytes(self.file.read(1))
                 damagelist.append(damage)
             self.DamageLists.append(damagelist)
-        print(self.DamageLists)
 
     def Randomize(self):
         super().Randomize()

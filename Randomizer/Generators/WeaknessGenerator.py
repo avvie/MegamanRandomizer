@@ -73,7 +73,6 @@ class WeaknessGenerator(GeneratorBase):
                 original_index = original_index + 1
 
     def __Write(self):
-        print("Weakness table", self.DamageCharts)
         self.file.seek(self.DamageTableOffset)
         for damagecharts in self.DamageCharts:
             for damagevalues in damagecharts:

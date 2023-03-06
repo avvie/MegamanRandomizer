@@ -33,13 +33,14 @@ def PrintHelp():
            "\nRandomizer Options:\n" +
            "-w:\tDo NOT randomize weapon drops. Default: Weapons WILL get randomized\n" +
            "-p:\tDo NOT randomize pallete drops. Default: Palletes WILL get randomized\n" +
+           "+weakness\t Randomizes new damage charts for the main 6 bosses with with classic MM styled weaknesses \n" +
            "+music:\tShuffle stage music. Default: Music WILL NOT get randomized\n" +
            "\nGame Patches\n"+
            "+roll:\t Applies Roll-Chan graphics patch (Credit:\t ZYNK). Defualt: Off\n" +
            "-qol:\tDo NOT apply Quality of Life patch. Default: Patch WILL be applied\n" +
            "\tQuality of life buffs bomb weapon and refills ammo upon death\n"+
            "\n\tDisable individual patches from QoL set:\n\n"+
-           "\t-a:\tDo NOT apply ammo refil patch\n"+
+           "\t-a:\tDo NOT apply ammo refill patch\n"+
            "\t-b:\tDo Not apply bomb timer buff patch\n"+
            "\n"
            )
