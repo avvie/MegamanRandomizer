@@ -35,7 +35,7 @@ def PrintHelp():
            "-p:\tDo NOT randomize  color palettes. Default: Palettes WILL get randomized\n" +
            "+weakness\t Randomizes new damage charts for the main 6 bosses with with classic MM styled weaknesses \n" +
            "+music:\tShuffle stage music. Default: Music WILL NOT get randomized\n" +
-           "+stageclear:\t Mega Man now fires his newly obtained weapon upon clearing the stage. Default: Off\n" +
+           "+stageclear:\t Mega Man now fires his new obtained weapon upon clearing the stage. Default: Off\n" +
            "\nGame Patches\n"+
            "+roll:\t Applies Roll-Chan graphics patch (Credit:\t ZYNK). Defualt: Off\n" +
            "-qol:\tDo NOT apply Quality of Life patch. Default: Patch WILL be applied\n" +
