@@ -5,6 +5,8 @@ from Generators.WeaknessGenerator import WeaknessGenerator
 from Generators.MusicGenerator import MusicGenerator
 from Generators.PaletteGenerator import PaletteGenerator
 from Generators.WeaponGenerator import WeaponGenerator
+from Patches.StageClearCutscene import StageClearCutscene
+from Patches.RollChan import RollChanPatch
 from Offsets import Megaman_Default
 from Patches.AmmoRefilOnDeath import AmmoRefilOnDeath
 from Patches.BombBuff import BombBuff
@@ -78,7 +80,11 @@ class Randomizer:
 
     def __handle_patch_args__(self, PatchList, args, file):
         if ParamExistsInArgs(args, '+roll'):
-            PatchList.append(IPSPatcher(file, "ROLLCHAN.ips"))
+            PatchList.append(RollChanPatch(file))
+
+        if ParamExistsInArgs(args, '+stageclear'):
+            PatchList.append(StageClearCutscene(file))
+
         if not ParamExistsInArgs(args, '-qol') and len(ListIntersection(args, qolPatches)) == 0:
             PatchList.append(QualityOfLifePatches(file))
 
