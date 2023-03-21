@@ -12,7 +12,8 @@ class RandomizerFlagLogic:
         print(generator_list)
         if self.NameTester('RollChanPatch', patch_list) and \
                 self.NameTester('PaletteGenerator', generator_list):
-            print("remove palette generator")
+            print("Character patches currently lack palette Randomization support\n" +
+                  "Removing randomized palettes")
             self.RemoveFromList('PaletteGenerator', generator_list)
 
         if self.NameTester('StageClearCutscene', patch_list) and \
@@ -32,7 +33,6 @@ class RandomizerFlagLogic:
     def RemoveFromList(self, classname, _list):
         for classes in _list:
             if classes.__class__.__name__ == classname:
-                print("popped", classes)
                 _list.pop(_list.index(classes))
 
     def ReturnIndex(self, classname, _list):
