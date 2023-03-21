@@ -12,8 +12,10 @@ class RandomizerFlagLogic:
         print(generator_list)
         if self.NameTester('RollChanPatch', patch_list) and \
                 self.NameTester('PaletteGenerator', generator_list):
+
             print("Character patches currently lack palette Randomization support\n" +
                   "Removing randomized palettes")
+
             self.RemoveFromList('PaletteGenerator', generator_list)
 
         if self.NameTester('StageClearCutscene', patch_list) and \
