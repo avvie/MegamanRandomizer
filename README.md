@@ -26,6 +26,7 @@ If it wont load, open an issue :)
 | +weakness | Randomizes damage delt to main 6 bosses. Disabled by default |
 | +music | Shuffles stage music. Disabled by default |
 | Game Patches | --- |
+| +stageclear | Mega Man now fires his newly obtained weapon upon clearing a stage. Default: Off|
 | +roll | Applies Roll-Chan graphics patch (Credit Zynk). Disabled by default |
 | -qol | Disables all quality of life changes. |
 | -a | Disables ammo refil upon death |

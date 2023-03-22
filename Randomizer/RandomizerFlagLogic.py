@@ -9,4 +9,33 @@ class RandomizerFlagLogic:
         pass
 
     def apply_randomizer_logic_flags(self, generator_list, patch_list, ips_patches_list):
-        pass
+        print(generator_list)
+        if self.NameTester('RollChanPatch', patch_list) and \
+                self.NameTester('PaletteGenerator', generator_list):
+            print("Character patches currently lack palette Randomization support\n" +
+                  "Removing randomized palettes")
+            self.RemoveFromList('PaletteGenerator', generator_list)
+
+        if self.NameTester('StageClearCutscene', patch_list) and \
+                self.NameTester('WeaponGenerator', generator_list):
+            generator_list[self.ReturnIndex('WeaponGenerator', generator_list)].StageClearCutscene = True
+
+    def ParamTester(self, objectotest, listtocheck):
+        for objects in listtocheck:
+            if objectotest in objects.params:
+                return True
+
+    def NameTester(self, name, list):
+        for objects in list:
+            if objects.__class__.__name__ == name:
+                return True
+
+    def RemoveFromList(self, classname, _list):
+        for classes in _list:
+            if classes.__class__.__name__ == classname:
+                _list.pop(_list.index(classes))
+
+    def ReturnIndex(self, classname, _list):
+        for classes in _list:
+            if classes.__class__.__name__ == classname:
+                return _list.index(classes)

@@ -4,17 +4,20 @@ from BaseClasses.GeneratorBase import *
 class WeaponGenerator(GeneratorBase):
     # Original weapon reward bytes
     # Cut, Ice, Bomb, Fire, Elec, Guts
+    StageClearCutscene = bool
+    StageSelectPatch = bool
     Weapon_Rewards = [0x20, 0x10, 0x02, 0x40, 0x04, 0x08]
     Rewards_Table_Offset = 0x1C148
     Boss_Defeated_Table_Offset = 0x1BFCC
     Gutsman_Specific_Fix_Offset = 0x1B69E
     Damage_Table_Offset = 0x1FDEE
+    Stage_Clear_WeaponSelect_Offset = 0x1C130
     DamageLists = []
     Rewards_Table = []
     # This may be dumb to use
     # Converts index of most damaging weapon to the corresponding weapon reward
     DamageIndex_to_Reward_Dict = {1: 0x20, 2: 0x10, 3: 0x02, 4: 0x40, 5: 0x04, 6: 0x08}
-
+    RewardTable_to_WeaponSelect_Dict = {0x20: 1, 0x10: 2, 0x02: 3, 0x40: 4, 0x04: 5, 0x08: 6}
     def __init__(self, file, params = None):
         super().__init__(file, params)
 
@@ -69,8 +72,15 @@ class WeaponGenerator(GeneratorBase):
         for reward in self.Rewards_Table:
             self.file.write(int.to_bytes(reward))
 
-        self.file.seek(self.Gutsman_Specific_Fix_Offset)  # Gutsman drawn sprite works differently on the level select
-        self.file.write(int.to_bytes(self.Rewards_Table[5]))
+        if not self.StageSelectPatch:  # Stage Select patch doesn't currently support drawing Gutsman
+            self.file.seek(self.Gutsman_Specific_Fix_Offset)  # Gutsman drawn sprite works differently on the level select
+            self.file.write(int.to_bytes(self.Rewards_Table[5]))
+
+        if self.StageClearCutscene:
+            self.file.seek(self.Stage_Clear_WeaponSelect_Offset)
+            for reward in self.Rewards_Table:
+                self.file.write(int.to_bytes(self.RewardTable_to_WeaponSelect_Dict[reward]))
+
 
     def __ReadDamageChart(self):
         # Get the 6 x 8 damage chart

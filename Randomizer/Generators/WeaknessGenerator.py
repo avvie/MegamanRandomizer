@@ -11,6 +11,7 @@ class WeaknessGenerator(GeneratorBase):
     #  P  C  I  B  F  E  G  M
     # [3, 1, 0, 2, 3, 1, 14 0]
     DamageCharts = []  # Damage charts that ultimately get written to rom
+    StageSelectPatch = bool
 
     def __init__(self, file, params = None):
         super().__init__(file, params)

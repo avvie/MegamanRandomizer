@@ -3,3 +3,4 @@ fceux-2.2.2-win32/
 *.nes
 *.pyc
 .idea/
+*.bak
