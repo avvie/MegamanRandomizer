@@ -11,7 +11,6 @@ class WeaknessGenerator(GeneratorBase):
     #  P  C  I  B  F  E  G  M
     # [3, 1, 0, 2, 3, 1, 14 0]
     ReadDamageCharts = []
-    NewDamageCharts = []  # Damage charts that ultimately get written to rom
     StageSelectPatch = bool
 
     def __init__(self, file, params = None):
@@ -25,10 +24,11 @@ class WeaknessGenerator(GeneratorBase):
     # Each boss' damage chart should have a major weakness unique to that boss, and a minor weakness
     # The minor weakness should just be different from the major weakness
     def __Generate(self):
-        random.shuffle(self.NewDamageCharts)  # Shuffles the order of lists without shuffling the lists' contents
+        self.__ReadDamageChart()
+        random.shuffle(self.ReadDamageCharts)  # Shuffles the order of lists without shuffling the lists' contents
 
         original_index = 0
-        for chart in self.NewDamageCharts:
+        for chart in self.ReadDamageCharts:
             # Check if Gutsman's weapon is the most damaging weapon in a chart
             if chart[6] > 3:  # Damage chart has a major weakness to Gutsman's wepaon
                 chart[6] = 14  # As mentioned before, buff damage to defeat a boss in only two hits
@@ -36,32 +36,33 @@ class WeaknessGenerator(GeneratorBase):
 
                 # Swap the original damage chart with a Gutsman weakness (original_index)
                 # With a randomly chosen index of 0, 4, or 5 (Cut, Elec, or Guts. They all have throwable blocks)
-                damagechart_with_gutsmanweakness = self.NewDamageCharts[original_index]
-                damagechart_with_throwableblocks = self.NewDamageCharts[new_index]
+                damagechart_with_gutsmanweakness = self.ReadDamageCharts[original_index]
+                damagechart_with_throwableblocks = self.ReadDamageCharts[new_index]
 
                 # Swap the two charts
-                self.NewDamageCharts[original_index] = damagechart_with_throwableblocks
-                self.NewDamageCharts[new_index] = damagechart_with_gutsmanweakness
+                self.ReadDamageCharts[original_index] = damagechart_with_throwableblocks
+                self.ReadDamageCharts[new_index] = damagechart_with_gutsmanweakness
 
                 break
             else:
                 original_index = original_index + 1
-
+        print(self.ReadDamageCharts)
     def __Write(self):
         self.file.seek(self.DamageTableOffset)
-        for damagecharts in self.NewDamageCharts:
+        for damagecharts in self.ReadDamageCharts:
             for damagevalues in damagecharts:
                 self.file.write(int.to_bytes(damagevalues))
 
     def __ReadDamageChart(self):
         # Get the 6 x 8 damage chart
-        self.file.seek(self.Damage_Table_Offset)
+        self.file.seek(self.DamageTableOffset)
         for damagelists in range(6):
             damagelist = []
             for damagevalues in range(8):
                 damage = int.from_bytes(self.file.read(1))
                 damagelist.append(damage)
             self.ReadDamageCharts.append(damagelist)
+        print("Read damage charts ", self.ReadDamageCharts)
 
 
     def Randomize(self):
