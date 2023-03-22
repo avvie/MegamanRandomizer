@@ -2,6 +2,7 @@ import shutil
 import sys
 
 from Generators.WeaknessGenerator import WeaknessGenerator
+from Generators.DamageToBossGenerator import DamageToBossGenerator
 from Generators.MusicGenerator import MusicGenerator
 from Generators.PaletteGenerator import PaletteGenerator
 from Generators.WeaponGenerator import WeaponGenerator
@@ -95,6 +96,8 @@ class Randomizer:
             PatchList.append(BombBuff(file))
 
     def __handle_generator_args__(self, GeneratorList, args, file):
+        if ParamExistsInArgs(args, '+damage'):
+            GeneratorList.append(DamageToBossGenerator(file))
         if ParamExistsInArgs(args, '+weakness'):
             GeneratorList.append(WeaknessGenerator(file))
         if not ParamExistsInArgs(args, '-w'):
