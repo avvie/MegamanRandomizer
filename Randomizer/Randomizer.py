@@ -7,6 +7,7 @@ from Generators.MusicGenerator import MusicGenerator
 from Generators.PaletteGenerator import PaletteGenerator
 from Generators.WeaponGenerator import WeaponGenerator
 from Patches.StageClearCutscene import StageClearCutscene
+from Patches.WeaknessVisualizer import WeaknessVisualizer
 from Patches.RollChan import RollChanPatch
 from Offsets import Megaman_Default
 from Patches.AmmoRefilOnDeath import AmmoRefilOnDeath
@@ -85,6 +86,9 @@ class Randomizer:
 
         if ParamExistsInArgs(args, '+stageclear'):
             PatchList.append(StageClearCutscene(file))
+
+        if ParamExistsInArgs(args, '+weaknessviz'):
+            PatchList.append(WeaknessVisualizer(file))
 
         if not ParamExistsInArgs(args, '-qol') and len(ListIntersection(args, qolPatches)) == 0:
             PatchList.append(QualityOfLifePatches(file))

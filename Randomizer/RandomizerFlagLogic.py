@@ -9,7 +9,6 @@ class RandomizerFlagLogic:
         pass
 
     def apply_randomizer_logic_flags(self, generator_list, patch_list, ips_patches_list):
-        print(generator_list)
         if self.NameTester('RollChanPatch', patch_list) and \
                 self.NameTester('PaletteGenerator', generator_list):
             print("Character patches currently lack palette Randomization support\n" +
@@ -19,6 +18,14 @@ class RandomizerFlagLogic:
         if self.NameTester('StageClearCutscene', patch_list) and \
                 self.NameTester('WeaponGenerator', generator_list):
             generator_list[self.ReturnIndex('WeaponGenerator', generator_list)].StageClearCutscene = True
+
+        if self.NameTester('WeaknessVisualizer', patch_list) and \
+                self.NameTester('WeaponGenerator', generator_list):
+            generator_list[self.ReturnIndex('WeaponGenerator', generator_list)].WeaknessVisualizer = True
+
+        if self.NameTester('WeaknessVisualizer', patch_list) and \
+                self.NameTester('WeaknessGenerator', generator_list):
+            generator_list[self.ReturnIndex('WeaknessGenerator', generator_list)].WeaknessVisualizer = True
 
     def ParamTester(self, objectotest, listtocheck):
         for objects in listtocheck:

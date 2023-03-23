@@ -33,11 +33,14 @@ def PrintHelp():
            "\nRandomizer Options:\n" +
            "-w:\tDo NOT randomize weapon drops. Default: Weapons WILL get randomized\n" +
            "-p:\tDo NOT randomize  color palettes. Default: Palettes WILL get randomized\n" +
-           "+weakness\t Randomizes new damage charts for the main 6 bosses with with classic MM styled weaknesses \n" +
+           "+weakness:\tRandomizes weaknesses of the main 6 Robots: Default Off \n" +
+           "+damagetoboss:\tRandomizes damage dealt to main 6 Robots excluding weaknesses: Default Off \n" +
            "+music:\tShuffle stage music. Default: Music WILL NOT get randomized\n" +
-           "+stageclear:\t Mega Man now fires his newly obtained weapon upon clearing the stage. Default: Off\n" +
            "\nGame Patches\n"+
-           "+roll:\t Applies Roll-Chan graphics patch (Credit:\t ZYNK). Defualt: Off\n" +
+           "+stageclear:\tMega Man now fires his newly obtained weapon upon clearing the stage: Default: Off\n" +
+           "+weaknessviz:\tMarks levels on stage select based on if you have that bosses weakness: Default Off\n" +
+           "\tRed for not having it, Green for having it, Black for level completed\n" +
+           "+roll:\tApplies Roll-Chan graphics patch (Credit:\t ZYNK). Defualt: Off\n" +
            "-qol:\tDo NOT apply Quality of Life patch. Default: Patch WILL be applied\n" +
            "\tQuality of life buffs bomb weapon and refills ammo upon death\n"+
            "\n\tDisable individual patches from QoL set:\n\n"+

@@ -2,6 +2,7 @@ from BaseClasses.GeneratorBase import *
 
 
 class WeaknessGenerator(GeneratorBase):
+    WeaknessVisualizer = bool
     #                    C  I  B  F  E  G
     BossWeaponIndexes = [1, 2, 3, 4, 5, 6]
     DamageTableOffset = 0x1FDEE
@@ -11,8 +12,9 @@ class WeaknessGenerator(GeneratorBase):
     #  P  C  I  B  F  E  G  M
     # [3, 1, 0, 2, 3, 1, 14 0]
     ReadDamageCharts = []
-    StageSelectPatch = bool
-
+    WeaknessTable = []
+    WeaknessTableOffset = 0x1BFCC
+    DamageIndex_to_WeaknessValue_Dict = {1: 0x20, 2: 0x10, 3: 0x02, 4: 0x40, 5: 0x04, 6: 0x08}
     def __init__(self, file, params = None):
         super().__init__(file, params)
 
@@ -30,8 +32,8 @@ class WeaknessGenerator(GeneratorBase):
         original_index = 0
         for chart in self.ReadDamageCharts:
             # Check if Gutsman's weapon is the most damaging weapon in a chart
-            if chart[6] > 3:  # Damage chart has a major weakness to Gutsman's wepaon
-                chart[6] = 14  # As mentioned before, buff damage to defeat a boss in only two hits
+            if chart[6] == 14:  # Damage chart has a major weakness to Gutsman's wepaon
+                # Ensure the boss with a wekaness to Gutsman has throwable blocks
                 new_index = random.choice([0, 4, 5])  # These are the boss rooms that have throwable blocks
 
                 # Swap the original damage chart with a Gutsman weakness (original_index)
@@ -46,12 +48,30 @@ class WeaknessGenerator(GeneratorBase):
                 break
             else:
                 original_index = original_index + 1
-        print(self.ReadDamageCharts)
+
+        if self.WeaknessVisualizer:
+            self.__GenerateWeaknessTable()
+
+    def __GenerateWeaknessTable(self):  # Generates the weakness table used by the stage select patch
+        for chart in self.ReadDamageCharts:
+            # Create a sorted chart to find the most damaging weapon
+            sortedchart = chart[:]
+            sortedchart.sort()
+            weaknessvalue = sortedchart[7]
+            weaknessindex = chart.index(weaknessvalue)
+            # Use dictionary to convert from an index, to a value we can compare against owned weapons
+            self.WeaknessTable.append(self.DamageIndex_to_WeaknessValue_Dict[weaknessindex])
+
     def __Write(self):
         self.file.seek(self.DamageTableOffset)
         for damagecharts in self.ReadDamageCharts:
             for damagevalues in damagecharts:
                 self.file.write(int.to_bytes(damagevalues))
+
+        if self.WeaknessVisualizer:
+            self.file.seek(self.WeaknessTableOffset)
+            for weakness in self.WeaknessTable:
+                self.file.write(int.to_bytes(weakness))
 
     def __ReadDamageChart(self):
         # Get the 6 x 8 damage chart
@@ -62,7 +82,6 @@ class WeaknessGenerator(GeneratorBase):
                 damage = int.from_bytes(self.file.read(1))
                 damagelist.append(damage)
             self.ReadDamageCharts.append(damagelist)
-        print("Read damage charts ", self.ReadDamageCharts)
 
 
     def Randomize(self):

@@ -24,9 +24,12 @@ If it wont load, open an issue :)
 | -w | Disables randomization of weapons. Enabled by default |
 | -p | Disables randomization of megaman pallete. Enabled by default |
 | +weakness | Randomizes damage delt to main 6 bosses. Disabled by default |
+| +damagetoboss | Randomizes damage dealt to main 6 Robots excluding weaknesses: Default Off|
 | +music | Shuffles stage music. Disabled by default |
 | Game Patches | --- |
 | +stageclear | Mega Man now fires his newly obtained weapon upon clearing a stage. Default: Off|
+| +weaknessviz | Marks levels on stage select based on if you have that bosses weakness. Default: Off|
+| +weaknessviz | Red for not having it, Green for having it, Black for level completed|
 | +roll | Applies Roll-Chan graphics patch (Credit Zynk). Disabled by default |
 | -qol | Disables all quality of life changes. |
 | -a | Disables ammo refil upon death |
