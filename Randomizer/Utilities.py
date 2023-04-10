@@ -38,8 +38,7 @@ def PrintHelp():
            "+music:\tShuffle stage music. Default: Music WILL NOT get randomized\n" +
            "\nGame Patches\n"+
            "+stageclear:\tMega Man now fires his newly obtained weapon upon clearing the stage: Default: Off\n" +
-           "+weaknessviz:\tMarks levels on stage select based on if you have that bosses weakness: Default Off\n" +
-           "\tRed for not having it, Green for having it, Black for level completed\n" +
+           "+weaknessviz:\tMarks levels on stage select based on if you have that bosses weakness (Red for not having it, Green for having it, Black for level completed): Default Off\n" +
            "+roll:\tApplies Roll-Chan graphics patch (Credit:\t ZYNK). Defualt: Off\n" +
            "-qol:\tDo NOT apply Quality of Life patch. Default: Patch WILL be applied\n" +
            "\tQuality of life buffs bomb weapon and refills ammo upon death\n"+
