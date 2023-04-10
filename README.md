@@ -28,8 +28,7 @@ If it wont load, open an issue :)
 | +music | Shuffles stage music. Disabled by default |
 | Game Patches | --- |
 | +stageclear | Mega Man now fires his newly obtained weapon upon clearing a stage. Default: Off|
-| +weaknessviz | Marks levels on stage select based on if you have that bosses weakness. Default: Off|
-| +weaknessviz | Red for not having it, Green for having it, Black for level completed|
+| +weaknessviz | Marks levels on stage select based on if you have that bosses weakness. Red for not having it, Green for having it, Black for level completedDefault: Off|
 | +roll | Applies Roll-Chan graphics patch (Credit Zynk). Disabled by default |
 | -qol | Disables all quality of life changes. |
 | -a | Disables ammo refil upon death |
