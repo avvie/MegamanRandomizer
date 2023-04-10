@@ -5,7 +5,7 @@ class WeaponGenerator(GeneratorBase):
     # Original weapon reward bytes
     # Cut, Ice, Bomb, Fire, Elec, Guts
     StageClearCutscene = bool
-    StageSelectPatch = bool
+    WeaknessVisualizer = bool
     Weapon_Rewards = [0x20, 0x10, 0x02, 0x40, 0x04, 0x08]
     Rewards_Table_Offset = 0x1C148
     Boss_Defeated_Table_Offset = 0x1BFCC
@@ -68,13 +68,15 @@ class WeaponGenerator(GeneratorBase):
         for reward in self.Rewards_Table:
             self.file.write(int.to_bytes(reward))
 
-        self.file.seek(self.Boss_Defeated_Table_Offset)
-        for reward in self.Rewards_Table:
-            self.file.write(int.to_bytes(reward))
-
-        if not self.StageSelectPatch:  # Stage Select patch doesn't currently support drawing Gutsman
+        if not self.WeaknessVisualizer:  # Stage Select patch doesn't currently support drawing Gutsman
             self.file.seek(self.Gutsman_Specific_Fix_Offset)  # Gutsman drawn sprite works differently on the level select
             self.file.write(int.to_bytes(self.Rewards_Table[5]))
+
+            # This table is repurposed as the WeaknessTable
+            self.file.seek(self.Boss_Defeated_Table_Offset)
+            for reward in self.Rewards_Table:
+                self.file.write(int.to_bytes(reward))
+
 
         if self.StageClearCutscene:
             self.file.seek(self.Stage_Clear_WeaponSelect_Offset)
